@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { Button, Table, message, Modal } from "antd";
 import { questionBank } from "@/models/TH2/questionBank";
 import ExamForm from "./ExamForm";
@@ -25,7 +25,7 @@ const ExamCreator = () => {
       const shuffled = filtered.sort(() => 0.5 - Math.random()).slice(0, count);
       selectedQuestions = [...selectedQuestions, ...shuffled];
     });
-
+    
     if (selectedQuestions.length === 0) {
       message.error("Không đủ câu hỏi theo yêu cầu!");
       return;

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Modal, Form, Input, DatePicker, InputNumber, Button, Select } from 'antd';
+import { Modal, Form, Input, DatePicker, InputNumber, Select } from 'antd';
 
 interface StudyFormProps {
   visible: boolean;

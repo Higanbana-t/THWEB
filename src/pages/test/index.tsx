@@ -10,6 +10,7 @@ interface StudyLog {
   duration: number;
   content: string;
   notes?: string;
+  completed: boolean;
 }
 
 interface SubjectData {

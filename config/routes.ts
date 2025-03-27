@@ -1,5 +1,6 @@
 ﻿import component from "@/locales/en-US/component";
-import path from "path";
+import Icon from "@ant-design/icons";
+
 
 export default [
 	{
@@ -38,6 +39,12 @@ export default [
 		name: 'RandomUser',
 		component: './RandomUser',
 		icon: 'ArrowsAltOutlined',
+	},
+	{
+		path: '/TH4',
+		name:'Bai 4',
+		icon:'MenuUnfoldOutlined',
+		component:'./TH4/DiplomaBook',
 	},
 	{
 		path: '/todo',
@@ -83,6 +90,33 @@ export default [
 
 		],
 	},
+
+	{
+		path: '/',
+		component: './TH3/layouts', // Layout chính của ứng dụng
+		icon:'MenuUnfoldOutlined',
+		name:'Bai 3',
+		routes: [
+			
+			{ path: '/booking', component: '@/pages/TH3/Booking' },
+			
+		  ],
+		
+	},
+	{ 
+		path: '/login',
+		component: './TH3/Login',
+		layout: false,
+		Icon: 'MenuUnfoldOutlined',
+		name:'Bai 3',
+	},
+
+
+
+
+
+
+	
 
 	// DANH MUC HE THONG
 	// {
