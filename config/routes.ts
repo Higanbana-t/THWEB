@@ -1,5 +1,6 @@
 ﻿import component from "@/locales/en-US/component";
 import Icon from "@ant-design/icons";
+import path from "path";
 
 
 export default [
@@ -46,6 +47,9 @@ export default [
 		icon:'MenuUnfoldOutlined',
 		component:'./TH4/DiplomaBook',
 	},
+
+
+	  
 	{
 		path: '/todo',
 		name: 'Todo',
@@ -58,6 +62,12 @@ export default [
 		component:'./test',
 		icon:'MenuUnfoldOutlined'
 	},
+	{
+		path: '/GK',
+		name: 'GKBAI4',
+		icon: 'MenuUnfoldOutlined',
+		component: './GK', // Kiểm tra lại đường dẫn này
+	  },
 
 	{
 		path:'/question',
@@ -110,6 +120,9 @@ export default [
 		Icon: 'MenuUnfoldOutlined',
 		name:'Bai 3',
 	},
+	
+
+
 
 
 
