@@ -1,5 +1,6 @@
 ﻿import component from "@/locales/en-US/component";
 import Icon from "@ant-design/icons";
+import route from "mock/route";
 import path from "path";
 
 
@@ -46,6 +47,18 @@ export default [
 		name:'Bai 4',
 		icon:'MenuUnfoldOutlined',
 		component:'./TH4/DiplomaBook',
+	},
+	{
+		path: '/TH5',
+		name:'Bai 5',
+		icon:'MenuUnfoldOutlined',
+		routes:[
+			{
+				name:'CLUB',
+				path:'CLUB',
+				component:'./TH5/Club',
+			},
+		],
 	},
 
 
