@@ -1,8 +1,7 @@
-﻿import component from "@/locales/en-US/component";
-import Icon from "@ant-design/icons";
-import route from "mock/route";
-import path from "path";
-
+﻿import component from '@/locales/en-US/component';
+import Icon from '@ant-design/icons';
+import route from 'mock/route';
+import path from 'path';
 
 export default [
 	{
@@ -44,25 +43,28 @@ export default [
 	},
 	{
 		path: '/TH4',
-		name:'Bai 4',
-		icon:'MenuUnfoldOutlined',
-		component:'./TH4/DiplomaBook',
+		name: 'Bai 4',
+		icon: 'MenuUnfoldOutlined',
+		component: './TH4/DiplomaBook',
 	},
 	{
 		path: '/TH5',
-		name:'Bai 5',
-		icon:'MenuUnfoldOutlined',
-		routes:[
+		name: 'Bai 5',
+		icon: 'MenuUnfoldOutlined',
+		routes: [
 			{
-				name:'CLUB',
-				path:'CLUB',
-				component:'./TH5/Club',
+				name: 'CLUB',
+				path: 'CLUB',
+				component: './TH5/Club',
+			},
+			{
+				name: 'Registration',
+				path: 'Registration',
+				component: './TH5/Registration',
 			},
 		],
 	},
 
-
-	  
 	{
 		path: '/todo',
 		name: 'Todo',
@@ -70,79 +72,60 @@ export default [
 		icon: 'CheckCircleOutlined',
 	},
 	{
-		path:'/test',
-		name:'Test',
-		component:'./test',
-		icon:'MenuUnfoldOutlined'
+		path: '/test',
+		name: 'Test',
+		component: './test',
+		icon: 'MenuUnfoldOutlined',
 	},
 	{
 		path: '/GK',
 		name: 'GKBAI4',
 		icon: 'MenuUnfoldOutlined',
 		component: './GK', // Kiểm tra lại đường dẫn này
-	  },
+	},
 
 	{
-		path:'/question',
-		name:'Bai 2',
-		icon:'MenuUnfoldOutlined',
-		routes:[
+		path: '/question',
+		name: 'Bai 2',
+		icon: 'MenuUnfoldOutlined',
+		routes: [
 			{
-			name:'Danh mục khối kiến thức',
-			path:'DanhMucKhoiKienThuc',
-			component:'./TH2/DanhMucKhoiKienThuc',
-
-
+				name: 'Danh mục khối kiến thức',
+				path: 'DanhMucKhoiKienThuc',
+				component: './TH2/DanhMucKhoiKienThuc',
 			},
 			{
-			name:'Subject',
-			path:'Subject',
-			component:'./TH2/subject',
-
+				name: 'Subject',
+				path: 'Subject',
+				component: './TH2/subject',
 			},
 			{
-			name:'Question',
-			path:'Question',
-			component:'./TH2/question',
+				name: 'Question',
+				path: 'Question',
+				component: './TH2/question',
 			},
 			{
-				name:'exam',
-				path:'exam',
-				component:'./TH2/ExamQuetion',
+				name: 'exam',
+				path: 'exam',
+				component: './TH2/ExamQuetion',
 			},
-
 		],
 	},
 
 	{
 		path: '/',
 		component: './TH3/layouts', // Layout chính của ứng dụng
-		icon:'MenuUnfoldOutlined',
-		name:'Bai 3',
-		routes: [
-			
-			{ path: '/booking', component: '@/pages/TH3/Booking' },
-			
-		  ],
-		
+		icon: 'MenuUnfoldOutlined',
+		name: 'Bai 3',
+		routes: [{ path: '/booking', component: '@/pages/TH3/Booking' }],
 	},
-	{ 
+	{
 		path: '/login',
 		component: './TH3/Login',
 		layout: false,
 		Icon: 'MenuUnfoldOutlined',
-		name:'Bai 3',
+		name: 'Bai 3',
 	},
-	
-
-
-
-
-
-
-
-
-	
 
 	// DANH MUC HE THONG
 	// {
