@@ -1,165 +1,29 @@
-// File: src/pages/ClubMemberManager/index.tsx
 import React, { useState } from 'react';
 import { Table, Button, Modal, Select, message } from 'antd';
 import type { ColumnsType } from 'antd/es/table';
 import { SwapOutlined } from '@ant-design/icons';
-
-interface Club {
-	id: string;
-	name: string;
-	foundedDate: string;
-	avatar: string;
-	description: string;
-	leader: string;
-	isActive: boolean;
-}
-
-interface Member {
-	id: string;
-	fullName: string;
-	email: string;
-	phone: string;
-	gender: 'Nam' | 'Nữ' | 'Khác';
-	clubId: string;
-}
-
-type RegistrationStatus = 'Pending' | 'Approved' | 'Rejected';
-
-interface Registration {
-	id: string;
-	fullName: string;
-	email: string;
-	phone: string;
-	gender: 'Nam' | 'Nữ' | 'Khác';
-	address: string;
-	skills: string;
-	clubId: string;
-	reason: string;
-	status: RegistrationStatus;
-	note?: string;
-	history: ActionLog[];
-}
-
-interface ActionLog {
-	action: 'Approved' | 'Rejected';
-	by: string;
-	at: string;
-	note?: string;
-}
-
-// Dummy Data
-const clubs: Club[] = [
-	{
-		id: '1',
-		name: 'CLB Âm nhạc',
-		foundedDate: '2023-01-01',
-		avatar: '',
-		description: '',
-		leader: 'Nguyễn Văn A',
-		isActive: true,
-	},
-	{
-		id: '2',
-		name: 'CLB Thể thao',
-		foundedDate: '2023-01-01',
-		avatar: '',
-		description: '',
-		leader: 'Nguyễn Văn B',
-		isActive: true,
-	},
-];
-
-let registrations: Registration[] = [
-	{
-		id: 'r1',
-		fullName: 'Trần Thị B',
-		email: 'a@gmail.com',
-		phone: '0123456789',
-		gender: 'Nữ',
-		address: '',
-		skills: '',
-		clubId: '1',
-		reason: '',
-		status: 'Approved',
-		history: [],
-	},
-	{
-		id: 'r2',
-		fullName: 'Ngô Văn C',
-		email: 'b@gmail.com',
-		phone: '0987654321',
-		gender: 'Nam',
-		address: '',
-		skills: '',
-		clubId: '1',
-		reason: '',
-		status: 'Pending',
-		history: [],
-	},
-	// Thêm dữ liệu mới ở đây
-	{
-		id: 'r3',
-		fullName: 'Lê Văn D',
-		email: 'c@gmail.com',
-		phone: '0111222333',
-		gender: 'Nam',
-		address: '',
-		skills: '',
-		clubId: '2',
-		reason: '',
-		status: 'Approved',
-		history: [],
-	},
-	{
-		id: 'r4',
-		fullName: 'Phạm Thị E',
-		email: 'd@gmail.com',
-		phone: '0445566778',
-		gender: 'Nữ',
-		address: '',
-		skills: '',
-		clubId: '2',
-		reason: '',
-		status: 'Rejected',
-		history: [],
-	},
-];
+import useClubMemberStore from '@/models/useClubModel'; // Giả sử bạn lưu hook ở đây
 
 export default function ClubMemberManager() {
+	const { clubs, members, changeMemberClub } = useClubMemberStore();
+
 	const [selectedRowKeys, setSelectedRowKeys] = useState<React.Key[]>([]);
 	const [isModalOpen, setIsModalOpen] = useState(false);
 	const [targetClubId, setTargetClubId] = useState<string>('');
 	const [selectedClubId, setSelectedClubId] = useState<string>('');
 
-	const approvedMembers: Member[] = registrations
-		.filter((r) => r.status === 'Approved')
-		.map((r) => ({
-			id: r.id,
-			fullName: r.fullName,
-			email: r.email,
-			phone: r.phone,
-			gender: r.gender,
-			clubId: r.clubId,
-		}));
-
+	// Lọc danh sách thành viên được duyệt theo CLB
+	const approvedMembers = members;
 	const filteredMembers = selectedClubId ? approvedMembers.filter((m) => m.clubId === selectedClubId) : [];
 
 	const handleChangeClub = () => {
-		registrations = registrations.map((reg) => {
-			if (selectedRowKeys.includes(reg.id)) {
-				return {
-					...reg,
-					clubId: targetClubId,
-				};
-			}
-			return reg;
-		});
+		changeMemberClub(selectedRowKeys as string[], targetClubId);
 		message.success(`${selectedRowKeys.length} thành viên đã được chuyển đến CLB mới.`);
 		setIsModalOpen(false);
 		setSelectedRowKeys([]);
 	};
 
-	const columns: ColumnsType<Member> = [
+	const columns: ColumnsType<(typeof members)[0]> = [
 		{ title: 'Họ tên', dataIndex: 'fullName' },
 		{ title: 'Email', dataIndex: 'email' },
 		{ title: 'SĐT', dataIndex: 'phone' },
@@ -178,6 +42,7 @@ export default function ClubMemberManager() {
 					allowClear
 					style={{ minWidth: 200 }}
 					placeholder='Chọn CLB để lọc'
+					value={selectedClubId || undefined}
 					onChange={(value) => setSelectedClubId(value)}
 					options={clubs.map((c) => ({ label: c.name, value: c.id }))}
 				/>

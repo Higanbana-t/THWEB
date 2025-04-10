@@ -1,95 +1,15 @@
-// File: src/pages/ClubMemberManager/index.tsx
-import React from 'react';
 import { Card, Button } from 'antd';
 import { Column } from '@ant-design/plots';
 import * as XLSX from 'xlsx';
-
-// Dummy Data
-const clubs: Club[] = [
-	{
-		id: '1',
-		name: 'CLB Âm nhạc',
-		foundedDate: '2023-01-01',
-		avatar: '',
-		description: '',
-		leader: 'Nguyễn Văn A',
-		isActive: true,
-	},
-	{
-		id: '2',
-		name: 'CLB Thể thao',
-		foundedDate: '2023-01-01',
-		avatar: '',
-		description: '',
-		leader: 'Nguyễn Văn B',
-		isActive: true,
-	},
-];
-
-const registrations: Registration[] = [
-	{
-		id: 'r1',
-		fullName: 'Trần Thị B',
-		email: 'a@gmail.com',
-		phone: '0123456789',
-		gender: 'Nữ',
-		address: '',
-		skills: '',
-		clubId: '1',
-		reason: '',
-		status: 'Approved',
-		history: [],
-	},
-	{
-		id: 'r2',
-		fullName: 'Ngô Văn C',
-		email: 'b@gmail.com',
-		phone: '0987654321',
-		gender: 'Nam',
-		address: '',
-		skills: '',
-		clubId: '1',
-		reason: '',
-		status: 'Pending',
-		history: [],
-	},
-	// Thêm dữ liệu mới ở đây
-	{
-		id: 'r3',
-		fullName: 'Lê Văn D',
-		email: 'c@gmail.com',
-		phone: '0111222333',
-		gender: 'Nam',
-		address: '',
-		skills: '',
-		clubId: '2',
-		reason: '',
-		status: 'Approved',
-		history: [],
-	},
-	{
-		id: 'r4',
-		fullName: 'Phạm Thị E',
-		email: 'd@gmail.com',
-		phone: '0445566778',
-		gender: 'Nữ',
-		address: '',
-		skills: '',
-		clubId: '2',
-		reason: '',
-		status: 'Rejected',
-		history: [],
-	},
-];
-
+import useClubData from '@/models/useClubModel';
 export default function ClubMemberManager() {
-	const countByStatus = registrations.reduce(
-		(acc, reg) => {
-			acc[reg.status]++;
-			return acc;
-		},
-		{ Pending: 0, Approved: 0, Rejected: 0 },
-	);
+	const { clubs, registrations, summaryStats } = useClubData();
+
+	const countByStatus = {
+		Pending: summaryStats.pending,
+		Approved: summaryStats.approved,
+		Rejected: summaryStats.rejected,
+	};
 
 	const columnData = clubs.flatMap((club) => {
 		const clubRegs = registrations.filter((r) => r.clubId === club.id);
