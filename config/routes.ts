@@ -64,6 +64,19 @@ export default [
 			},
 		],
 	},
+	{
+		path: '/TH6',
+		name: 'Bai 6',
+		icon: 'MenuUnfoldOutlined',
+		routes: [
+			{
+				name: 'Admin',
+				path: 'Admin',
+				component: './Dulich/Admin',
+			},
+		],
+
+	},
 
 	{
 		path: '/todo',
